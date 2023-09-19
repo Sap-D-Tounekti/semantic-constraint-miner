@@ -29,7 +29,7 @@ class RecommendationConfig:
         """
         return lambda x: (1 - self.semantic_weight) * (
                 x[self.config.SUPPORT] / max_support[x[self.config.LEVEL]]) + \
-                         self.semantic_weight * x[self.config.SEMANTIC_BASED_RELEVANCE] \
-            if x[self.config.SUPPORT] > 0 else 0
+                         (self.semantic_weight * x[self.config.SEMANTIC_BASED_RELEVANCE] \
+            if x[self.config.SUPPORT] > 0 and x[self.config.SEMANTIC_BASED_RELEVANCE] is not None else 0)
 
 # (1 - self.frequency_weight) * (x[[patt for patt in self.generality_pattern]].max())
